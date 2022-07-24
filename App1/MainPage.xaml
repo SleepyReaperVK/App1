@@ -20,19 +20,46 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="1" Grid.Column="1"
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
-                   FontSize="60" FontFamily="Algerian" Text="Classical Library"/>
-        <TextBlock Grid.Row="2" Grid.Column="1"
-                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" TextAlignment="Center"
+                   FontSize="60" FontFamily="Algerian" Text="Classical Library" Margin="0,31,0,0"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" TextAlignment="Center"
                    FontSize="60" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
-                   Text="Wellcome to the magical world of litrature"  />
+                   Text="Wellcome to the magical world of litrature" Margin="0,10,0,0"  />
         <Button Grid.Row="3" 
                 HorizontalAlignment="Center"
                 Height="100" Width="200" Click="Button_Click"  >
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
                        FontSize="30" Text="Browse" FontFamily="Arial Black" FontWeight="Bold"/>
-
         </Button>
+        <Canvas x:Name="PersonType" Grid.Row="3" Grid.Column="1" >
+            <Button
+            Height="100" Width="200" Click="Customer_Click"  Canvas.Left="107" Canvas.Top="66" VerticalAlignment="Top"  >
+                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                FontSize="30" Text="Castomer" FontFamily="Arial Black" FontWeight="Bold"/>
+            </Button>
+            <Button
+                Height="100" Width="200" Click="Employee_Click"  Canvas.Left="435" Canvas.Top="66"  >
+                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                    FontSize="30" Text="Employee" FontFamily="Arial Black" FontWeight="Bold"/>
+            </Button>
+
+        </Canvas>
+        <Canvas x:Name="Admin" Grid.Row="3" Grid.Column="1" Visibility="Collapsed" >
+
+            <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
+                   FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
+                   Text="Username:" Margin="0,10,0,0"  />
+
+            <TextBox x:Name="Username"  VerticalAlignment="Top" HorizontalAlignment="Left"
+                   FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="10"  />
+
+            <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
+            FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
+            Text="Password:" Margin="0,102,0,0"  />
+
+            <TextBox x:Name="Pass"  VerticalAlignment="Center" HorizontalAlignment="Left"
+            FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="100"  />
+
+        </Canvas>
     </Grid>
 </Page>

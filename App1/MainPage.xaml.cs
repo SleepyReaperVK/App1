@@ -1,5 +1,6 @@
 ﻿using Library.DAL;
 using Library.Model;
+using Library.Users;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,12 +31,22 @@ namespace App1
         {
            
             this.InitializeComponent();
-            
+            //Employee jim = new Employee(Username.text, Pass.text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(Menu), null);
+        }
+
+        private void Employee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Customer_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
