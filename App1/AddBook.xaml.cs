@@ -43,8 +43,9 @@ namespace App1
             //    Country.Items.Add(b);
             //}
             Country.ItemsSource = ISBN.Countries.Keys;
-            Publisher.ItemsSource = Enum.GetNames(typeof(JournalFrequency));
-                //ISBN.Publishers.Keys;
+            Publisher.ItemsSource = ISBN.Publishers.Keys;
+                                    //Enum.GetNames(typeof(JournalFrequency));
+
 
 
 

@@ -124,6 +124,7 @@
     <Compile Include="IRepository.cs" />
     <Compile Include="LibraryDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDB.cs" />
     <EmbeddedResource Include="Properties\Library.DAL.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,10 @@
     <ProjectReference Include="..\Library.Model\Library.Model.csproj">
       <Project>{32FD76B6-2AB4-46CD-B786-432754647F20}</Project>
       <Name>Library.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.U\Library.Users.csproj">
+      <Project>{E0BC2A95-0E1B-4BB2-A2A7-8566E59C3974}</Project>
+      <Name>Library.Users</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

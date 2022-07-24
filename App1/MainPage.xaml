@@ -5,8 +5,7 @@
     xmlns:local="using:App1"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" Background="{ThemeResource AppBarBackgroundThemeBrush}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +24,7 @@
         <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" TextAlignment="Center"
                    FontSize="60" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
                    Text="Wellcome to the magical world of litrature" Margin="0,10,0,0"  />
-        <Button Grid.Row="3" 
+        <Button x:Name="Browse" Grid.Row="3" 
                 HorizontalAlignment="Center"
                 Height="100" Width="200" Click="Button_Click"  >
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
@@ -42,8 +41,8 @@
                 <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
                     FontSize="30" Text="Employee" FontFamily="Arial Black" FontWeight="Bold"/>
             </Button>
-
         </Canvas>
+        
         <Canvas x:Name="Admin" Grid.Row="3" Grid.Column="1" Visibility="Collapsed" >
 
             <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
@@ -57,8 +56,19 @@
             FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
             Text="Password:" Margin="0,102,0,0"  />
 
-            <TextBox x:Name="Pass"  VerticalAlignment="Center" HorizontalAlignment="Left"
+            <PasswordBox x:Name="Pass"  VerticalAlignment="Center" HorizontalAlignment="Left"
             FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="100"  />
+
+        </Canvas>
+        
+        <Canvas x:Name="Customer" Grid.Row="3" Grid.Column="1" Visibility="Collapsed" >
+
+            <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
+                   FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
+                   Text="Username:" Margin="0,10,0,0" />
+
+            <TextBox x:Name="CUsername"  VerticalAlignment="Top" HorizontalAlignment="Left"
+                   FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="10"  />
 
         </Canvas>
     </Grid>

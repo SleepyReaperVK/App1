@@ -11,9 +11,7 @@ namespace Library.Users
     {
         private string _password = string.Empty;
 
-        
-        private StreamWriter _whitlist = new StreamWriter("C:\\WhiteList.txt");
-        protected string Password { get { return _password; } set {
+        public string Password { get { return _password; } set {
                 if (value != string.Empty)
                     _password = value;
                 else
@@ -24,7 +22,7 @@ namespace Library.Users
         {
             IsAdmin= true;
             Password = password;
-            _whitlist.WriteLine($"{user}$\t{password}*");
+            
         }
     }
 }

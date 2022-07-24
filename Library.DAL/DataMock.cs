@@ -1,4 +1,5 @@
 ﻿using Library.Model;
+using Library.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Library.DAL
     public class DataMock
     {
         public List<LibraryItem> LibraryItems { get; private set; }
+        public List<Person> Users { get; private set; }
 
         private static DataMock _instance;
 
@@ -25,6 +27,7 @@ namespace Library.DAL
         private DataMock()
         {
             LibraryItems = new List<LibraryItem>();
+            Users = new List<Person>();
             ISBN.Publishers = new Dictionary<string, int> { };
             ISBN.Countries = new Dictionary<string, int> { };
             Init();
@@ -263,6 +266,12 @@ namespace Library.DAL
             book3.Price = 90;
             #endregion
 
+            Employee jim = new Employee("JimK", "123123");
+            Employee vad = new Employee("vadSlayer", "321321");
+            Customer bob = new Customer("Bob");
+
+            Users.AddRange(new[] {vad , jim });
+            Users.Add(bob);
             LibraryItems.AddRange(new[] { book1, book2, book3 });
         }
     }

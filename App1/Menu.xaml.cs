@@ -31,7 +31,6 @@ namespace App1
         {
             this.InitializeComponent();
             _db = new LibraryDB();
-
             updateBookList();
 
 

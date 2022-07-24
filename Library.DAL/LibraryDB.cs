@@ -1,4 +1,5 @@
 ﻿using Library.Model;
+using Library.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace Library.DAL
             return _context.LibraryItems.FirstOrDefault(i => i.Id == id);
         }
 
-        public List<LibraryItem> List()
+        public List<LibraryItem> List()//should be used needs replaceing
         {   
                 return _context.LibraryItems;   
         }
@@ -64,5 +65,7 @@ namespace Library.DAL
             }
             return item;
         }
+
+        
     }
 }
