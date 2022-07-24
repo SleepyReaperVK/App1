@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3D6C0CFD-6DBF-477B-A3C7-4F3624F31247}</ProjectGuid>
+    <ProjectGuid>{7B6990D3-E26E-4487-AE4D-AC68D3F8F2D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library.DAL</RootNamespace>
-    <AssemblyName>Library.DAL</AssemblyName>
+    <RootNamespace>LibraryTools</RootNamespace>
+    <AssemblyName>LibraryTools</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -120,22 +120,14 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DataMock.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="LibraryDB.cs" />
+    <Compile Include="ListTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Library.DAL.rd.xml" />
+    <EmbeddedResource Include="Properties\LibraryTools.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.12</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Library.Model\Library.Model.csproj">
-      <Project>{32FD76B6-2AB4-46CD-B786-432754647F20}</Project>
-      <Name>Library.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

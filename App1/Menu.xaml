@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="App1.Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="333*"/>
+            <RowDefinition Height="667*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle   Height="333" Fill="Firebrick" Grid.ColumnSpan="3" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Our Selection, Please Choose your book:" TextAlignment="Center" FontSize="64"
+                   TextWrapping="WrapWholeWords" FontFamily="Palatino Linotype" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <ListView x:Name="ListBook" Grid.Row="1" Grid.ColumnSpan="3" Background="LightBlue">
+        </ListView>
+        <ComboBox x:Name="SortComboBox" FontSize="42" Height="56" Width="186"  HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ComboBoxItem x:Name="byTitle" Content="Title" Tapped="byTitle_Tapped"/>
+            <ComboBoxItem x:Name="byDate" Content="Date" Tapped="byDate_Tapped"/>
+            <ComboBoxItem x:Name="byPriceHL" Content="Price (High to Low)" Tapped="byPriceHL_Tapped"/>
+            <ComboBoxItem x:Name="byPriceLH" Content="Price (Low to High)" Tapped="byPriceLH_Tapped"/>
+        </ComboBox>
+        <TextBlock x:Name="SortText" Text="Sort by :" FontSize="42 " Height="50" Width="150" HorizontalAlignment="Left" />
+        <Button Content="AddBook" Grid.Column="2" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Height="86" Width="206" Click="AddBook_Click"/>
+    </Grid>
+</Page>

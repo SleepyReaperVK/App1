@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Library.DAL
 {
-    public class LibraryRepository : IRepository<LibraryItem>
+    public class LibraryDB : IRepository<LibraryItem>
     {
-        private readonly DataMock _context = new DataMock();
+        DataMock _context = DataMock.Instance;
 
         public LibraryItem Add(LibraryItem item)
         {
             _context.LibraryItems.Add(item);
+            
             return item;
         }
 
@@ -25,6 +26,19 @@ namespace Library.DAL
             return item;
         }
 
+        
+        public LibraryItem Find(string title)
+        {
+            foreach(var x in _context.LibraryItems)
+            {
+                if (x.Title == title)
+                    return x;
+            }
+            return null;
+        }
+
+     
+
         public IQueryable<LibraryItem> Get()
         {
             return _context.LibraryItems.AsQueryable();
@@ -33,6 +47,11 @@ namespace Library.DAL
         public LibraryItem Get(Guid id)
         {
             return _context.LibraryItems.FirstOrDefault(i => i.Id == id);
+        }
+
+        public List<LibraryItem> List()
+        {   
+                return _context.LibraryItems;   
         }
 
         public LibraryItem Update(LibraryItem item)

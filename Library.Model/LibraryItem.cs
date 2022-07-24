@@ -22,6 +22,10 @@ namespace Library.Model
         /// print or publish date of item
         /// </summary>
         public DateTime PublishDate { get; set; }
+        /// <summary>
+        /// price of item in Int
+        /// </summary>
+        public int Price { get; set ; } 
 
         /// <summary>
         /// create a instance of library item
@@ -33,6 +37,7 @@ namespace Library.Model
             Id = Guid.NewGuid();
             Title = title;
             PublishDate = publishDate;
+            Price = 0;
         }
     }
 }

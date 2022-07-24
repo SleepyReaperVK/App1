@@ -9,6 +9,30 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="1" Grid.Column="1"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                   FontSize="60" FontFamily="Algerian" Text="Classical Library"/>
+        <TextBlock Grid.Row="2" Grid.Column="1"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                   FontSize="60" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
+                   Text="Wellcome to the magical world of litrature"  />
+        <Button Grid.Row="3" 
+                HorizontalAlignment="Center"
+                Height="100" Width="200" Click="Button_Click"  >
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
+                       FontSize="30" Text="Browse" FontFamily="Arial Black" FontWeight="Bold"/>
 
+        </Button>
     </Grid>
 </Page>

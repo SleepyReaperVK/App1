@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="App1.AddBook"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#CCA27B9B" BorderBrush="Red">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Rectangle x:Name="LeftS" Margin="0,10,0,0" Grid.RowSpan="8" Stroke="Black" Fill="RoyalBlue" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="508" Height="980" VerticalAlignment="Top"/>
+        <TextBox x:Name="Title" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" InputScope="Default" PlaceholderText="Title"/>
+        <TextBox x:Name="Auther"  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" PlaceholderText="Auther"/>
+        <TextBox x:Name="Date"  VerticalAlignment="Top" FontSize="20" Margin="218,62,218,0" Grid.Row="3" PlaceholderText="Date"/>
+        <DatePicker x:Name="DatePick" Grid.Row="4" HorizontalAlignment="Stretch" FontSize="20" DayFormat="{}{day.integer}" Margin="106,0,98,0" />
+        <ComboBox x:Name="Country"  Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" PlaceholderText="Country">
+
+        </ComboBox>
+        <TextBox x:Name="Synapsis" Header="Synapsis" AcceptsReturn="True" FontSize="20" TextWrapping="Wrap" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="7" Height="855" Width="999" Margin="13,0,0,20" HorizontalAlignment="Left"/>
+        <Button x:Name="EditOrAddBook" Content="AddBook" Grid.Column="2" Height="105" Margin="227,0,0,0" Grid.Row="7" Width="203" Click="EditOrAddBook_Click"/>
+        <ComboBox x:Name="Publisher" PlaceholderText="Publisher" Margin="194,0,0,0" Grid.Row="5" Width="120" VerticalAlignment="Center"/>
+        <TextBox x:Name="Price"  PlaceholderText="Price" Grid.Row="6"  Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"  />
+    </Grid>
+</Page>

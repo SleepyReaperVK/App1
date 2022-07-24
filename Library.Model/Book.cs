@@ -23,7 +23,7 @@ namespace Library.Model
         /// <summary>
         /// get international standard book number <see cref="Library.Model.ISBN"/>
         /// </summary>
-        public ISBN ISBN { get; private set; }
+        public ISBN Isbn { get; private set; }
 
         /// <summary>
         /// get collection of book's authors
@@ -36,8 +36,8 @@ namespace Library.Model
         /// <exception cref="IsbnException">thrown when attempting to set publisher value that is not recognized by ISBN</exception>
         public string Publisher
         {
-            get { return this.ISBN.Publisher; }
-            set { this.ISBN.Publisher = value; }
+            get { return this.Isbn.Publisher; }
+            set { this.Isbn.Publisher = value; }
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Library.Model
             int serialNumber = 0, string country = _defaultCountry)
             : base(title, publishDate)
         {
-            this.ISBN = new ISBN() { SerialNumber = serialNumber };
-            this.ISBN.Country = country;
+            this.Isbn = new ISBN() { SerialNumber = serialNumber };
+            this.Isbn.Country = country;
             Authors = new List<string>();
             Genres = new List<string>();
         }
