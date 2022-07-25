@@ -26,9 +26,17 @@
         <TextBlock x:Name="ISBN" Text="ISBN" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
         <TextBlock x:Name="Country" Text="Country" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
         <TextBox x:Name="Synapsis" Header="Synapsis"  IsReadOnly="True" Grid.Row="2" Grid.RowSpan="3" Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" TextWrapping="Wrap"/>
-        <CommandBar x:Name="InfoOptions" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Bottom" Background="Black">
+
+        <CommandBar x:Name="InfoOptions" Grid.Column="0" Grid.Row="0" Background="Transparent" IsOpen="True" DefaultLabelPosition="Right" IsSticky="True" Grid.ColumnSpan="3"  VerticalAlignment="Top" HorizontalAlignment="Left">
             <AppBarButton x:Name="RemoveBook" Icon="Cancel" Label="Remove Book" Content="Remove Book" Background="DarkGray" Click="RemoveBook_Click"/>
             <AppBarButton x:Name="EditBook" Icon="Edit" Label="Edit Book" Content="Edit Book" Background="DarkGray" Click="EditBook_Click"/>
         </CommandBar>
+        
+        <CommandBar x:Name="InfoSale" Background="Transparent" IsOpen="True" DefaultLabelPosition="Right" IsSticky="True"  VerticalAlignment="Top" HorizontalAlignment="Left"  Grid.Column="0" Grid.Row="0" >
+            <AppBarButton x:Name="Buy" Icon="Shop" Label="Buy" Content="Remove Book" Background="DarkGray" Click="RemoveBook_Click"/>
+            <AppBarButton x:Name="s" Icon="Home" Label="Rent(50% off )" Content="Edit Book" Background="DarkGray" Click="EditBook_Click"/>
+        </CommandBar>
+
+       
     </Grid>
 </Page>

@@ -116,11 +116,8 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AddBook.xaml.cs">
-      <DependentUpon>AddBook.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="AddJournal.xaml.cs">
-      <DependentUpon>AddJournal.xaml</DependentUpon>
+    <Compile Include="AddOrEdit.xaml.cs">
+      <DependentUpon>AddOrEdit.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -156,11 +153,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="AddBook.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddJournal.xaml">
+    <Page Include="AddOrEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

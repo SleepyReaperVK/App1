@@ -22,25 +22,38 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace App1
-{ 
+{
 
 
     public sealed partial class Menu : Page
     {
         public readonly IRepository<LibraryItem> _db;
-        public Person customer;
+        public readonly IRepository<Person> _dbU;
+        
+
         public Menu()
         {
             this.InitializeComponent();
             _db = new LibraryDB();
+            _dbU = new UserDB();
+            Premisions();
             updateBookList();
 
 
         }
+
+        private void Premisions()
+        {
+            if (_dbU.Current(null).IsAdmin)
+                showAdmin();
+            else
+                hideAdmin();
+        }
+
         public void updateBookList()
         {
             ListBook.Items.Clear();
-
+            
             foreach (var x in _db.Get())
             {
                 ListViewItem b = new ListViewItem();
@@ -84,7 +97,7 @@ namespace App1
 
         public void B_Tapped(object sender, TappedRoutedEventArgs e)//send should be always and UI obj , this sender is ListViewItem//
         {
-            
+
             this.Frame.Navigate(typeof(Info), sender);
 
 
@@ -117,53 +130,14 @@ namespace App1
 
         private void AddBook_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddBook));
+            this.Frame.Navigate(typeof(AddOrEdit));
 
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)// if e.parametar is repo it came from addbook \\ if LibraryItem then or Remove book or Edit Book
-        {
-            base.OnNavigatedTo(e);
-            Debug.WriteLine(e.Content);
-            Debug.WriteLine(e.Parameter);
-            if(e.Parameter.GetType() == typeof(Person))
-            {
-                Person temp = (Person)e.Parameter;
-                if (temp.IsAdmin)
-                    showAdmin();
-                else
-                {
-                    hideAdmin();
-                    customer = (Customer)e.Parameter;
-                }
-            }
-            
-                
-
-
-
-                //if (e.Parameter != null)
-                //    if (e.Parameter.GetType() == typeof(Book))//Book to edit / remove from _repo
-                //    {
-                //        Book x = (Book)e.Parameter;
-                //        Debug.WriteLine("Test1");
-
-                //    }
-                //    else if (e.Parameter.GetType() == typeof(Journal))//Jornel to edit / remove from _repo
-                //    {
-                //        Journal x = (Journal)e.Parameter;
-                //        Debug.WriteLine("Test2");
-
-                //    }
-                //    else if (e.Parameter.GetType() == typeof(List<LibraryItem>))//book is added
-                //    {
-                //        Debug.WriteLine("Test3");
-
-                //    }
-        }
+       
         public void showAdmin()
         {
-          BookAddBtn.Visibility = Visibility.Visible;
+            BookAddBtn.Visibility = Visibility.Visible;
         }
         public void hideAdmin()
         {

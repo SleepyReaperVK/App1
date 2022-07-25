@@ -1,6 +1,7 @@
 ﻿using Library.DAL;
 using Library.Model;
 using Library.Tools;
+using Library.Users;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,16 +29,38 @@ namespace App1
     public sealed partial class Info : Page
     {
         public readonly IRepository<LibraryItem> _db;
+        public readonly IRepository<Person> _dbU;
         private LibraryItem temp { get; set; }
         private ListViewItem NavItem;
         public Info()
         {
             this.InitializeComponent();
+            this.InitializeComponent();
             _db = new LibraryDB();
+            _dbU = new UserDB();
+            Premisions();
             this.Loaded += Info_Loaded;
         }
 
+        private void Premisions()
+        {
+            if (_dbU.Current(null).IsAdmin)
+                showAdmin();
+            else
+                hideAdmin();
+        }
 
+        private void showAdmin()
+        {
+            InfoOptions.Visibility = Visibility.Visible;
+            InfoSale.Visibility = Visibility.Collapsed;
+        }
+
+        private void hideAdmin()
+        {
+            InfoOptions.Visibility = Visibility.Collapsed;
+            InfoSale.Visibility = Visibility.Visible;
+        }
 
         private void Info_Loaded(object sender, RoutedEventArgs e)
         {
@@ -110,12 +133,13 @@ namespace App1
 
         private void RemoveBook_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Menu), temp);
+            _db.Delete(temp.Id);
+            Frame.Navigate(typeof(Menu));
         }
 
         private void EditBook_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AddBook), temp);
+            Frame.Navigate(typeof(AddOrEdit), temp);
         }
     }
 }

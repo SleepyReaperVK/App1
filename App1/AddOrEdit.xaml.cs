@@ -1,5 +1,6 @@
 ﻿using Library.DAL;
 using Library.Model;
+using Library.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,27 +25,21 @@ namespace App1
     ///  AddBook page is used to Add new Item to the DataBase 
     ///  AddBook page is used to Edit existing Items 
     /// </summary>
-    public sealed partial class AddBook : Page
+    public sealed partial class AddOrEdit : Page
     {
         public readonly IRepository<LibraryItem> _db;
         public bool DatePickChanged = false;
-        public AddBook()
+        private object tempItem;
+
+        public AddOrEdit()
         {
             this.InitializeComponent();
             _db = new LibraryDB();
             this.Loaded += Info_Loaded;
             this.Unloaded += AddBook_Unloaded;
             DatePick.DateChanged += DatePick_DateChanged;
-
-            //foreach (var x in ISBN.Countries)
-            //{
-            //    ComboBoxItem b = new ComboBoxItem();
-            //    b.Content = x.Key;
-            //    Country.Items.Add(b);
-            //}
             Country.ItemsSource = ISBN.Countries.Keys;
             Publisher.ItemsSource = ISBN.Publishers.Keys;
-                                    //Enum.GetNames(typeof(JournalFrequency));
 
 
 
@@ -76,35 +71,48 @@ namespace App1
 
         protected override void OnNavigatedTo(NavigationEventArgs e) // e.paremeter is .... // create new book and add to LibraryItems is _db//
         {
-            //if (e.Parameter.GetType() == typeof(List<LibraryItem>))
-            //    tempRepo = (List<LibraryItem>)e.Parameter;
-            //else if ((e.Parameter.GetType()).BaseType == typeof(LibraryItem))
-            //{
-            //    tempItem = (LibraryItem)e.Parameter;
-            //    DisplayInfo();
-            //}
+            if(e.Parameter != null)
+             if ((e.Parameter.GetType()).BaseType == typeof(LibraryItem))
+            {
+                tempItem = (LibraryItem)e.Parameter;
+                DisplayInfo();
+            }
 
         }
 
-        //public void DisplayInfo()// Edit func
-        //{
-        //    if (tempItem != null)
-        //    {
-        //        if (tempItem.GetType() == (typeof(Book)))
-        //        {
-        //            Book book = (Book)tempItem;
-        //            Title.Text = book.Title;
-        //            Auther.Text = book.Publisher;
-        //            Date.Text = book.PublishDate.ToString();
-        //            DatePick.Date = book.PublishDate;
-        //            Country.Header = book.Isbn.Country;
+        public void DisplayInfo()// Edit func
+        {
+            if (tempItem != null)
+            {
+                if (tempItem.GetType() == (typeof(Book)))
+                {
+                    Book book = (Book)tempItem;
+                    Title.Text = book.Title;
+                    Auther.Text = ListTools.MakeStringFromList(book.Authors);
+                    Genres.Header = ListTools.MakeStringFromList(book.Genres);
+                    Genres.PlaceholderText = "Add Genres";
+                    DatePick.Date = book.PublishDate;
+                    Country.Header = book.Isbn.Country;
+                    Synapsis.Text = book.Synopsis;
+                    Price.Text = book.Price+string.Empty;
+                }
+                else if (tempItem.GetType() == (typeof(Journal)))
+                {
+                    Journal journal = (Journal)tempItem;
+                    Title.Text = journal.Title;
+                    Auther.Text = ListTools.MakeStringFromList(journal.Editors);
+                    Genres.Header = ListTools.MakeStringFromList(journal.Ganres);
+                    Genres.PlaceholderText = "Add Genres";
+                    DatePick.Date = journal.PublishDate;
+                    Country.Header = ListTools.MakeStringFromList(journal.Ganres);
+                    Country.ItemsSource = journal.Ganres;
+                    Price.Text = journal.Price + string.Empty;
 
-        //            Synapsis.Text = book.Synopsis;
-        //        }
+                }
 
-        //    }
+            }
 
-        //}
+        }
 
         private void EditOrAddBook_Click(object sender, RoutedEventArgs e)
         {
@@ -113,6 +121,7 @@ namespace App1
                Book tempItem = new Book(Title.Text, DatePick.Date.DateTime, 200, Country.SelectionBoxItem.ToString());
                 tempItem.Publisher = Publisher.SelectedItem.ToString();// need to make sure is valid
                 tempItem.Price = int.Parse(Price.Text);// need to make sure is valid
+                tempItem.Synopsis = Synapsis.Text;
                 _db.Add(tempItem);
                 this.Frame.Navigate(typeof(Menu));
             }
@@ -163,16 +172,27 @@ namespace App1
                 }
             }
 
-            if (!DatePickChanged)
+            if (Publisher.SelectedItem == null)
             {
-                DatePick.Header = "Invalid input , select Valid Date ";
+                Publisher.Header = "Invalid input , select Valid Publisher ";
                 haveWrongField = true;
             }
             else
             {
-                DatePick.Header = string.Empty;
+                Publisher.Header = string.Empty;
             }
-            
+
+            if (Synapsis.Text == string.Empty)
+            {
+                Synapsis.Header = "Please add Synapsis";
+                haveWrongField = true;
+            }
+            else
+            {
+                Synapsis.Header = "Synapsis:";
+            }
+
+
             if (Synapsis.Text == string.Empty)
             {
                 Synapsis.Header = "Please add Synapsis";

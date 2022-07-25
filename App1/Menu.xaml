@@ -24,7 +24,7 @@
                    TextWrapping="WrapWholeWords" FontFamily="Palatino Linotype" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ListView x:Name="ListBook" Grid.Row="1" Grid.ColumnSpan="3" Background="LightBlue">
         </ListView>
-        <ComboBox x:Name="SortComboBox" FontSize="42" Height="56" Width="186"  HorizontalAlignment="Center" VerticalAlignment="Center">
+        <ComboBox x:Name="SortComboBox" FontSize="28" Height="56" Width="186"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <ComboBoxItem x:Name="byTitle" Content="Title" Tapped="byTitle_Tapped"/>
             <ComboBoxItem x:Name="byDate" Content="Date" Tapped="byDate_Tapped"/>
             <ComboBoxItem x:Name="byPriceHL" Content="Price (High to Low)" Tapped="byPriceHL_Tapped"/>
@@ -32,5 +32,7 @@
         </ComboBox>
         <TextBlock x:Name="SortText" Text="Sort by :" FontSize="42 " Height="50" Width="150" HorizontalAlignment="Left" />
         <Button x:Name="BookAddBtn" Content="AddBook" Grid.Column="2" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Height="86" Width="206" Click="AddBook_Click"/>
+        
+
     </Grid>
 </Page>

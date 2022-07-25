@@ -41,5 +41,9 @@ namespace Library.DAL
 
         #endregion
 
+        /// <summary>
+        /// takes User and set it to static property
+        /// </summary>
+        T Current(T User);
     }
 }

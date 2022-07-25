@@ -269,6 +269,7 @@ namespace Library.DAL
             Employee jim = new Employee("JimK", "123123");
             Employee vad = new Employee("vadSlayer", "321321");
             Customer bob = new Customer("Bob");
+            Employee One = new Employee("1", "1");
 
             Users.AddRange(new[] {vad , jim });
             Users.Add(bob);

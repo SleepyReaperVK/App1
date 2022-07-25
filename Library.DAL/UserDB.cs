@@ -2,6 +2,7 @@
 using Library.Users;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,22 @@ namespace Library.DAL
     {
 
         DataMock _context = DataMock.Instance;
+
+        private static Person _currentuser;
+        public static Person CurrentUser 
+        { 
+            get 
+            {
+                return _currentuser;
+            }
+            set
+            {
+   
+            if(_currentuser == null )
+                    _currentuser = value;
+            }
+        }
+
 
         public Person Add(Person item)
         {
@@ -66,6 +83,19 @@ namespace Library.DAL
                 _context.Users.Add(item);
             }
             return item;
+        }
+
+        /// <summary>
+        /// Returns Property From type Person, CurrentUser.
+        /// </summary>
+        public Person Current(Person user)
+        {
+            if (user != null)
+            {
+                return CurrentUser = user;
+            }
+
+            return _currentuser;
         }
     }
 }

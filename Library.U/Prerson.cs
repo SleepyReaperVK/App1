@@ -30,6 +30,10 @@ namespace Library.Users
             UserName = user;
             IsAdmin = false;
         }
+        public override string ToString()
+        {
+            return $"{UserName} With {Id} , isAdmin {IsAdmin}";
+        }
     }
 }
 

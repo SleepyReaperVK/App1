@@ -12,11 +12,32 @@ namespace Library.DAL
     {
         DataMock _context = DataMock.Instance;
 
+        private static LibraryItem _currentitem;
+        public static LibraryItem CurrentItem
+        {
+            get
+            {
+                return _currentitem;
+            }
+            set
+            {
+                if (_currentitem == null)
+                    _currentitem = value;
+            }
+        }
+
         public LibraryItem Add(LibraryItem item)
         {
             _context.LibraryItems.Add(item);
-            
+
             return item;
+        }
+        /// <summary>
+        /// Returns the First LibraryItem is the List "LibraryItems".
+        /// </summary>
+        public LibraryItem Current(LibraryItem str)
+        {
+            return _context.LibraryItems.First();
         }
 
         public LibraryItem Delete(Guid id)
@@ -27,10 +48,10 @@ namespace Library.DAL
             return item;
         }
 
-        
+
         public LibraryItem Find(string title)
         {
-            foreach(var x in _context.LibraryItems)
+            foreach (var x in _context.LibraryItems)
             {
                 if (x.Title == title)
                     return x;
@@ -38,7 +59,7 @@ namespace Library.DAL
             return null;
         }
 
-     
+
 
         public IQueryable<LibraryItem> Get()
         {
@@ -51,8 +72,8 @@ namespace Library.DAL
         }
 
         public List<LibraryItem> List()//should be used needs replaceing
-        {   
-                return _context.LibraryItems;   
+        {
+            return _context.LibraryItems;
         }
 
         public LibraryItem Update(LibraryItem item)
@@ -66,6 +87,6 @@ namespace Library.DAL
             return item;
         }
 
-        
+
     }
 }

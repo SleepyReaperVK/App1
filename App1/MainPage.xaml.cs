@@ -3,6 +3,7 @@ using Library.Model;
 using Library.Users;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -43,8 +44,8 @@ namespace App1
         {
             if (_person != null)
             {
-                _dbU.Add(_person);
-                Frame.Navigate(typeof(Menu), _person);// _____________________________NOte___________________________________________\\
+                _dbU.Current(_person);
+                this.Frame.Navigate(typeof(Menu));
             }
         }
 
