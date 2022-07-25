@@ -33,6 +33,9 @@ namespace Library.DAL
         {
             foreach (var x in _context.Users)
             {
+                if (x == null)
+                    _context.Users.Remove(x);
+                else
                 if (x.UserName == username)
                     return x;
             }

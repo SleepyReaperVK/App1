@@ -28,23 +28,24 @@ namespace App1
 
         public readonly IRepository<LibraryItem> _db;
         public readonly IRepository<Person> _dbU;
+        private Person _person;
         public MainPage()
         {
-           
+
             this.InitializeComponent();
             _db = new LibraryDB();
             _dbU = new UserDB();
             Browse.IsEnabled = false;
-            
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-            Frame.Navigate(typeof(Menu), null);
-            
-            
-
+            if (_person != null)
+            {
+                _dbU.Add(_person);
+                Frame.Navigate(typeof(Menu), _person);// _____________________________NOte___________________________________________\\
+            }
         }
 
         private void Employee_Click(object sender, RoutedEventArgs e)
@@ -56,16 +57,17 @@ namespace App1
 
         private void Pass_PasswordChanged(object sender, RoutedEventArgs e)
         {
-             if (Username.Text != string.Empty && Pass.Password != string.Empty)
+            Employee temp = (Employee)_dbU.Find(Username.Text);
+            if (Username.Text != string.Empty && Pass.Password != string.Empty)
             {
-                Employee temp = (Employee)_dbU.Find(Username.Text);
                 if (temp != null)
-                    if(temp.Password == Pass.Password)
+                    if (temp.Password == Pass.Password)
                     {
+                        _person = temp;
                         Browse.IsEnabled = true;
-                    } 
+                    }
             }
-             else
+            else
             {
                 Username.Header = "Invalid Input/s";
                 Browse.IsEnabled = false;
@@ -77,21 +79,21 @@ namespace App1
         {
             PersonType.Visibility = Visibility.Collapsed;
             Customer.Visibility = Visibility.Visible;
-            CUsername.TextChanged += CUsername_TextChanged; ;
+            CUsername.LostFocus += CUsername_LostFocus;
 
         }
 
-        private void CUsername_TextChanged(object sender, TextChangedEventArgs e)
+        private void CUsername_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (CUsername.Text != string.Empty)
+            Customer guest = (Customer)_dbU.Find(CUsername.Text);
+            if (CUsername.Text != string.Empty && CUsername.Text.Length >= 2)
             {
-                if (_dbU.Find(CUsername.Text) == null)
-                {
-                    Customer guest = new Customer(CUsername.Text);
-                    _dbU.Add(guest);
-                }
+                if(guest != null)
+                _person =new Customer (guest.UserName);
                 else
-                    Browse.IsEnabled = true;
+                    _person = new Customer(CUsername.Text);
+                
+                Browse.IsEnabled = true;
             }
             else
             {

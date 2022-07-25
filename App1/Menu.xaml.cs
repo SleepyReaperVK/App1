@@ -1,5 +1,6 @@
 ﻿using Library.DAL;
 using Library.Model;
+using Library.Users;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -27,6 +28,7 @@ namespace App1
     public sealed partial class Menu : Page
     {
         public readonly IRepository<LibraryItem> _db;
+        public Person customer;
         public Menu()
         {
             this.InitializeComponent();
@@ -103,13 +105,13 @@ namespace App1
 
         private void byPriceHL_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            _db.List().Sort((book1, book2) => book1.Price.CompareTo(book2.Price));
+            _db.List().Sort((book1, book2) => book2.Price.CompareTo(book1.Price));
             updateBookList();
         }
 
         private void byPriceLH_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            _db.List().Sort((book1, book2) => book2.Price.CompareTo(book1.Price));
+            _db.List().Sort((book1, book2) => book1.Price.CompareTo(book2.Price));
             updateBookList();
         }
 
@@ -124,6 +126,21 @@ namespace App1
             base.OnNavigatedTo(e);
             Debug.WriteLine(e.Content);
             Debug.WriteLine(e.Parameter);
+            if(e.Parameter.GetType() == typeof(Person))
+            {
+                Person temp = (Person)e.Parameter;
+                if (temp.IsAdmin)
+                    showAdmin();
+                else
+                {
+                    hideAdmin();
+                    customer = (Customer)e.Parameter;
+                }
+            }
+            
+                
+
+
 
                 //if (e.Parameter != null)
                 //    if (e.Parameter.GetType() == typeof(Book))//Book to edit / remove from _repo
@@ -143,6 +160,14 @@ namespace App1
                 //        Debug.WriteLine("Test3");
 
                 //    }
+        }
+        public void showAdmin()
+        {
+          BookAddBtn.Visibility = Visibility.Visible;
+        }
+        public void hideAdmin()
+        {
+            BookAddBtn.Visibility = Visibility.Collapsed;
         }
     }
 }

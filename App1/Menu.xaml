@@ -31,6 +31,6 @@
             <ComboBoxItem x:Name="byPriceLH" Content="Price (Low to High)" Tapped="byPriceLH_Tapped"/>
         </ComboBox>
         <TextBlock x:Name="SortText" Text="Sort by :" FontSize="42 " Height="50" Width="150" HorizontalAlignment="Left" />
-        <Button Content="AddBook" Grid.Column="2" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Height="86" Width="206" Click="AddBook_Click"/>
+        <Button x:Name="BookAddBtn" Content="AddBook" Grid.Column="2" HorizontalAlignment="Center" Margin="0,84,0,0" VerticalAlignment="Top" Height="86" Width="206" Click="AddBook_Click"/>
     </Grid>
 </Page>
