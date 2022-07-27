@@ -126,7 +126,7 @@ namespace App1
             Title.Text = x.Title;
             Auther.Text = ListTools.MakeStringFromList(x.Editors);
             Date.Text = $"{x.PublishDate:d}";
-            ISBN.Text = x.Contributers.ToArray().ToString() ;
+            ISBN.Text = ListTools.MakeStringFromList(x.Contributers);
             Synapsis.Text = x.Id.ToString();
 
         }

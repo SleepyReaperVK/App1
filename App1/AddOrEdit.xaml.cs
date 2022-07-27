@@ -41,7 +41,7 @@ namespace App1
             DatePick.DateChanged += DatePick_DateChanged;
             Country.ItemsSource = ISBN.Countries.Keys;
             Publisher.ItemsSource = ISBN.Publishers.Keys;
-
+            isEdit = false;
 
 
 
@@ -72,11 +72,16 @@ namespace App1
 
         protected override void OnNavigatedTo(NavigationEventArgs e) // e.paremeter is .... // create new book and add to LibraryItems is _db//
         {
-            if(e.Parameter != null)
+            if(e.Parameter != null)// is Edit
              if ((e.Parameter.GetType()).BaseType == typeof(LibraryItem))
             {
+                isEdit = true;
                 tempItem = (LibraryItem)e.Parameter;
                 DisplayInfo();
+            }
+            if(e.Parameter == null)// is Add
+            {
+
             }
 
         }
@@ -85,30 +90,42 @@ namespace App1
         {
             if (tempItem != null)
             {
-                isEdit = true;
+
                 if (tempItem.GetType() == (typeof(Book)))
                 {
+                    LeftS.Visibility = Visibility.Visible;
+                    Synapsis.Visibility = Visibility.Visible;
+                    EditOrAddBook.Visibility = Visibility.Visible;
+                    BookInput.Visibility = Visibility.Visible;
+                    ChooseCanvas.Visibility = Visibility.Collapsed;
+                    EditOrAddBook.Content = "update";
+
                     Book book = (Book)tempItem;
                     Title.Text = book.Title;
                     Auther.Text = ListTools.MakeStringFromList(book.Authors);
-                    Genres.Header = ListTools.MakeStringFromList(book.Genres);
-                    Genres.PlaceholderText = "Add Genres";
+                    Genres.PlaceholderText = ListTools.MakeStringFromList(book.Genres);
                     DatePick.Date = book.PublishDate;
-                    Country.Header = book.Isbn.Country;
+                    Country.PlaceholderText = book.Isbn.Country;
+                    Publisher.PlaceholderText = book.Publisher;
                     Synapsis.Text = book.Synopsis;
                     Price.Text = book.Price+string.Empty;
                 }
                 else if (tempItem.GetType() == (typeof(Journal)))
                 {
+
+                    LeftS.Visibility = Visibility.Visible;
+                    JournalInput.Visibility = Visibility.Visible;
+                    ChooseCanvas.Visibility = Visibility.Collapsed;
+
                     Journal journal = (Journal)tempItem;
-                    Title.Text = journal.Title;
-                    Auther.Text = ListTools.MakeStringFromList(journal.Editors);
-                    Genres.Header = ListTools.MakeStringFromList(journal.Ganres);
-                    Genres.PlaceholderText = "Add Genres";
-                    DatePick.Date = journal.PublishDate;
-                    Country.PlaceholderText = "Frequncy"; 
-                    Country.ItemsSource = Enum.GetNames(typeof(JournalFrequency));
-                    Price.Text = journal.Price + string.Empty;
+                    TitleJ.Text = journal.Title;
+                    AutherJ.Text = ListTools.MakeStringFromList(journal.Editors);
+                    GenresJ.Header = ListTools.MakeStringFromList(journal.Ganres);
+                    GenresJ.PlaceholderText = "Add Genres";
+                    DatePickJ.Date = journal.PublishDate;
+                    CountryJ.PlaceholderText = "Frequncy"; 
+                    CountryJ.ItemsSource = Enum.GetNames(typeof(JournalFrequency));
+                    PriceJ.Text = journal.Price + string.Empty;
 
                 }
 
@@ -120,17 +137,34 @@ namespace App1
         {
             if (!checkWrongFieleds())//check if any field are wrong , returns true if so.\\\
             {
-                if (isEdit)
+                if (isEdit)//if editing
                     if (tempItem.GetType() == (typeof(Book)))
                     {
-                        tempItem = new Book(Title.Text, DatePick.Date.DateTime, 200, Country.SelectionBoxItem.ToString());
+                        BookInput.Visibility = Visibility.Visible;
+                        Book tempItem = new Book(Title.Text, DatePick.Date.DateTime, 0, Country.SelectionBoxItem.ToString());
+                        tempItem.Authors.Clear();
+                        tempItem.Authors.Add(Auther.Text);
+                        tempItem.Genres.Add(Genres.Text);
+                        tempItem.Price =int.Parse(Price.Text);
+                        
                         _db.Update(tempItem);
                     }
-                if (tempItem.GetType() == (typeof(Book)))
+                else if (tempItem.GetType() == (typeof(Journal)))
                     {
-                    tempItem = new Journal(Title.Text, DatePick.Date.DateTime);
-                    _db.Update(tempItem);
+                        tempItem = new Journal(Title.Text, DatePick.Date.DateTime);
+                        _db.Update(tempItem);
                     }
+                //if Adding new Item
+
+                if (tempItem.GetType() == (typeof(Book)))
+                {
+                    _db.Add(tempItem);
+                }
+                else if (tempItem.GetType() == (typeof(Journal)))
+                {
+                    _db.Add(tempItem);
+                }
+
 
 
                 this.Frame.Navigate(typeof(Menu));
@@ -206,19 +240,36 @@ namespace App1
                 Synapsis.Header = "Synapsis:";
             }
 
-
-            if (Synapsis.Text == string.Empty)
+            if(!DatePickChanged)
             {
-                Synapsis.Header = "Please add Synapsis";
+                DatePick.Header = "Please add Synapsis";
                 haveWrongField = true;
             }
             else
             {
-                Synapsis.Header = "Synapsis:";
+                DatePick.Header = string.Empty;
             }
 
             return haveWrongField;
         }
 
+        private void ChooseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(ChooseToAdd.SelectedIndex == 1)
+            {
+                LeftS.Visibility = Visibility.Visible;
+                Synapsis.Visibility = Visibility.Visible;
+                EditOrAddBook.Visibility = Visibility.Visible;
+                BookInput.Visibility = Visibility.Visible;
+                ChooseCanvas.Visibility = Visibility.Collapsed;
+            }
+            else if(ChooseToAdd.SelectedIndex == 2)
+            {
+                LeftS.Visibility = Visibility.Visible;
+                JournalInput.Visibility = Visibility.Visible;
+                ChooseCanvas.Visibility = Visibility.Collapsed;
+            }
+
+        }
     }
 }

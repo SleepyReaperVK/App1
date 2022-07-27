@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Background="{ThemeResource AppBarBackgroundThemeBrush}">
 
+    <Viewbox Width="1000" Height="1000" Stretch="Uniform">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -73,4 +74,5 @@
 
         </Canvas>
     </Grid>
+    </Viewbox>
 </Page>
