@@ -29,7 +29,8 @@ namespace App1
     {
         public readonly IRepository<LibraryItem> _db;
         public bool DatePickChanged = false;
-        private object tempItem;
+        private LibraryItem tempItem;
+        private bool isEdit;
 
         public AddOrEdit()
         {
@@ -84,6 +85,7 @@ namespace App1
         {
             if (tempItem != null)
             {
+                isEdit = true;
                 if (tempItem.GetType() == (typeof(Book)))
                 {
                     Book book = (Book)tempItem;
@@ -104,8 +106,8 @@ namespace App1
                     Genres.Header = ListTools.MakeStringFromList(journal.Ganres);
                     Genres.PlaceholderText = "Add Genres";
                     DatePick.Date = journal.PublishDate;
-                    Country.Header = ListTools.MakeStringFromList(journal.Ganres);
-                    Country.ItemsSource = journal.Ganres;
+                    Country.PlaceholderText = "Frequncy"; 
+                    Country.ItemsSource = Enum.GetNames(typeof(JournalFrequency));
                     Price.Text = journal.Price + string.Empty;
 
                 }
@@ -118,14 +120,26 @@ namespace App1
         {
             if (!checkWrongFieleds())//check if any field are wrong , returns true if so.\\\
             {
-               Book tempItem = new Book(Title.Text, DatePick.Date.DateTime, 200, Country.SelectionBoxItem.ToString());
-                tempItem.Publisher = Publisher.SelectedItem.ToString();// need to make sure is valid
-                tempItem.Price = int.Parse(Price.Text);// need to make sure is valid
-                tempItem.Synopsis = Synapsis.Text;
-                _db.Add(tempItem);
+                if (isEdit)
+                    if (tempItem.GetType() == (typeof(Book)))
+                    {
+                        tempItem = new Book(Title.Text, DatePick.Date.DateTime, 200, Country.SelectionBoxItem.ToString());
+                        _db.Update(tempItem);
+                    }
+                if (tempItem.GetType() == (typeof(Book)))
+                    {
+                    tempItem = new Journal(Title.Text, DatePick.Date.DateTime);
+                    _db.Update(tempItem);
+                    }
+
+
                 this.Frame.Navigate(typeof(Menu));
             }
-
+            //Book tempItem = new Book(Title.Text, DatePick.Date.DateTime, 200, Country.SelectionBoxItem.ToString());
+            //tempItem.Publisher = Publisher.SelectedItem.ToString();// need to make sure is valid
+            //tempItem.Price = int.Parse(Price.Text);// need to make sure is valid
+            //tempItem.Synopsis = Synapsis.Text;
+            //_db.Add(tempItem);
         }
 
         private bool checkWrongFieleds()

@@ -16,14 +16,15 @@ namespace Library.DAL
         private static DataMock _instance;
 
         public static DataMock Instance
-            { get
+        {
+            get
             {
                 if (_instance == null)
                     _instance = new DataMock();
                 return _instance;
             }
 
-            }
+        }
         private DataMock()
         {
             LibraryItems = new List<LibraryItem>();
@@ -169,7 +170,7 @@ namespace Library.DAL
             #region AddKnownAuthors
             Book.KnownAuthors.Add("Jane Austen");
             Book.KnownAuthors.Add("Harper Lee");
-            Book.KnownAuthors.Add("F. Scott Fitzgerald"); 
+            Book.KnownAuthors.Add("F. Scott Fitzgerald");
             #endregion
 
             #region AddBookGenres
@@ -264,6 +265,12 @@ namespace Library.DAL
             book3.Genres.Add("Historical fiction");
             book3.Revision = 53;
             book3.Price = 90;
+
+            var journal1 = new Journal("Teens Magazine", DateTime.Now);
+            journal1.Editors.Add("Mark zober");
+            journal1.Contributers.Add("Tiler Noon");
+            journal1.Frequency = JournalFrequency.Daily;
+            journal1.Ganres.Add("Entertament");
             #endregion
 
             Employee jim = new Employee("JimK", "123123");
@@ -271,9 +278,10 @@ namespace Library.DAL
             Customer bob = new Customer("Bob");
             Employee One = new Employee("1", "1");
 
-            Users.AddRange(new[] {vad , jim });
+            Users.AddRange(new[] { vad, jim ,One});
             Users.Add(bob);
             LibraryItems.AddRange(new[] { book1, book2, book3 });
+            LibraryItems.Add(journal1);
         }
     }
 }

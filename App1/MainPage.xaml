@@ -32,43 +32,44 @@
         </Button>
         <Canvas x:Name="PersonType" Grid.Row="3" Grid.Column="1" >
             <Button
-            Height="100" Width="200" Click="Customer_Click"  Canvas.Left="107" Canvas.Top="66" VerticalAlignment="Top"  >
+            Height="100" Width="200" Click="Customer_Click"  Canvas.Left="91" Canvas.Top="25" VerticalAlignment="Top"  >
                 <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
-                FontSize="30" Text="Castomer" FontFamily="Arial Black" FontWeight="Bold"/>
+                FontSize="30" Text="Customer" FontFamily="Arial Black" FontWeight="Bold"/>
             </Button>
             <Button
-                Height="100" Width="200" Click="Employee_Click"  Canvas.Left="435" Canvas.Top="66"  >
+                Height="100" Width="200" Click="Employee_Click"  Canvas.Left="460" Canvas.Top="25" VerticalAlignment="Top"  >
                 <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"
                     FontSize="30" Text="Employee" FontFamily="Arial Black" FontWeight="Bold"/>
             </Button>
         </Canvas>
-        
+
         <Canvas x:Name="Admin" Grid.Row="3" Grid.Column="1" Visibility="Collapsed" >
 
             <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
-                   FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
-                   Text="Username:" Margin="0,10,0,0"  />
+                   FontSize="45"  TextWrapping="WrapWholeWords" 
+                   Text="Username:"  FontFamily="Blackadder ITC" Margin="0,10,0,0"  />
 
             <TextBox x:Name="Username"  VerticalAlignment="Top" HorizontalAlignment="Left"
-                   FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="10"  />
+                   FontSize="32"  Width="321" Canvas.Left="215" Canvas.Top="10"  />
 
             <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
-            FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
-            Text="Password:" Margin="0,102,0,0"  />
+            FontSize="45"  TextWrapping="WrapWholeWords" 
+            Text="Password:" FontFamily="Blackadder ITC" Margin="0,102,0,0"  />
 
             <PasswordBox x:Name="Pass"  VerticalAlignment="Center" HorizontalAlignment="Left"
-            FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="100"  />
+            FontSize="32"  Width="321" Canvas.Left="215" Canvas.Top="100"  />
 
         </Canvas>
-        
+
         <Canvas x:Name="Customer" Grid.Row="3" Grid.Column="1" Visibility="Collapsed" >
 
             <TextBlock  VerticalAlignment="Top" TextAlignment="Left"
-                   FontSize="45" FontFamily="Blackadder ITC" TextWrapping="WrapWholeWords" 
-                   Text="Username:" Margin="0,10,0,0" />
+                   FontSize="45"  TextWrapping="WrapWholeWords" 
+                   Text="Username:" FontFamily="Blackadder ITC" Margin="0,10,0,0" />
 
             <TextBox x:Name="CUsername"  VerticalAlignment="Top" HorizontalAlignment="Left"
-                   FontSize="32" FontFamily="Blackadder ITC" Width="321" Canvas.Left="215" Canvas.Top="10"  />
+                   FontSize="32"  Width="321" Canvas.Left="215" Canvas.Top="10"  />
+            <Button  Content="OK"  VerticalAlignment="Bottom" HorizontalAlignment="Center" Canvas.Left="215" Canvas.Top="135" Width="100" Height="45"/>
 
         </Canvas>
     </Grid>

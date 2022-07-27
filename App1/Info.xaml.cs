@@ -124,7 +124,7 @@ namespace App1
         public void UpdateInfo(Journal x)
         {
             Title.Text = x.Title;
-            Auther.Text = x.Editors.ToArray().ToString() ;
+            Auther.Text = ListTools.MakeStringFromList(x.Editors);
             Date.Text = $"{x.PublishDate:d}";
             ISBN.Text = x.Contributers.ToArray().ToString() ;
             Synapsis.Text = x.Id.ToString();
